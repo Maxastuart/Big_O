@@ -31,24 +31,23 @@ void insertion_sort_list(listint_t **list)
 				if (temp2->next == NULL)
 				{
 					temp2->prev->prev->next = temp2;
-					temp2->prev = NULL;
 					temp2->next = temp2->prev;
 					temp2->prev = temp2->prev->prev;
 					temp2->next->prev = temp2;
+					temp2->next->next = NULL;
 				}
 				else if (temp2->prev->prev != NULL)
 				{
-					temp2->prev = temp2->prev->prev;
 					temp2->prev->prev->next = temp2;
+					temp2->prev = temp2->prev->prev;
  					temp2->next->prev = temp2;
 				}
-				else
+				else if (temp2->prev->prev == NULL)
 				{
 					temp2->prev->next = temp2;
 					temp2->prev = NULL;
 					*list = temp2;
 				}
- 				temp2 = temp2->prev;
 				print_list(*list);
 			}
 		}
