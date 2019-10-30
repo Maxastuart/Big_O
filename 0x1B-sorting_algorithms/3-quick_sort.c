@@ -29,17 +29,23 @@ size_t pivot(int *array, size_t size, size_t begin, size_t end)
 	size_t i, cursor = begin;
 	int pivot_val = array[end];
 
-	for (i = begin; i < end; i++)
+	for (i = begin; i <= end; i++)
 	{
 		if (array[i] < pivot_val)
 		{
-			swap_int(&array[i], &array[cursor]);
-			print_array(array, size);
+			if (cursor != i)
+			{
+				swap_int(&array[i], &array[cursor]);
+				print_array(array, size);
+			}
 			cursor++;
 		}
 	}
-	swap_int(&array[end], &array[cursor]);
-	print_array(array, size);
+	if (end != cursor)
+	{
+		swap_int(&array[end], &array[cursor]);
+		print_array(array, size);
+	}
 	return (cursor);
 }
 
