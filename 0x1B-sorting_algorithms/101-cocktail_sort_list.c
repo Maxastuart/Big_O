@@ -49,16 +49,17 @@ void swap_list(listint_t *temp2)
 void cocktail_sort_list(listint_t **list)
 {
 	listint_t *temp;
-	int i, count = 1, var = 0;
+	size_t i, length;
 
 	if (list == NULL || (*list) == NULL || (*list)->next == NULL)
 		return;
 	temp = *list;
-	while
-	do
+	for (length = 0; temp->next != NULL; length++)
+		temp = temp->next;
+	temp = *list;
+	while (length > 0)
 	{
-		count = count - var;
-		for (i = 0; i < count && temp->next != NULL; i++)
+		for (i = 0; i < length; i++)
 		{
 			temp = temp->next;
 			if (temp->prev->n > temp->n)
@@ -66,12 +67,9 @@ void cocktail_sort_list(listint_t **list)
 				swap_list(temp);
 				print_list(*list);
 				i--;
-				count--;
 			}
-			count++;
-			printf("i=%lu, count=%lu\n", i, count);
 		}
-		for (i = 0; i < count && temp->prev != NULL; i++)
+		for (i = 0; i < length; i++)
 		{
 			if (temp->prev->n <= temp->n)
 				temp = temp->prev;
@@ -82,9 +80,7 @@ void cocktail_sort_list(listint_t **list)
 					*list = temp;
 				print_list(*list);
 			}
-			printf("i=%lu, count=%lu\n", i, count);
-			count--
 		}
-		var++;
-	} while (count > 0);
+		length--;
+	}
 }
