@@ -66,7 +66,7 @@ void cocktail_sort_list(listint_t **list)
 			{
 				swap_list(temp);
 				print_list(*list);
-				i--;
+				temp = temp->next;
 			}
 		}
 		for (i = 0; i < length; i++)
